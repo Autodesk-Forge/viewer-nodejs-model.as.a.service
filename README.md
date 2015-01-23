@@ -7,6 +7,8 @@
 
 A sample demonstrating the workflow and provide a tool to learn view and data API quickly.
 
+Live demo: [http://still-spire-1606.herokuapp.com](http://still-spire-1606.herokuapp.com/)
+
 ##Dependencies
 
 None
