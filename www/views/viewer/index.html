@@ -1,0 +1,136 @@
+<html>
+<head>
+
+    <title>ADN Viewer Basic</title>
+
+    <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon" />
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.1.2.min.js"></script>
+
+    <!-- Viewer -->
+    <link type="text/css" rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css"/>
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+
+    <!-- <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script> -->
+    <script src="/public/scripts/Autodesk.ADN.Toolkit.Viewer.js"></script>
+
+    <script>
+
+        //replace with your own urn ...
+        //use this sample to upload your model and get your urn
+        //https://github.com/Developer-Autodesk/workflow-dotnet-winform-view.and.data.api/ 
+        //var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==';
+        var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6ZGFuaWVsZHV0ZXN0YnVja2V0MTEvU2VhdC5kd2Z4';
+        
+
+        $(document).ready(function () {
+
+            var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
+                //'https://still-spire-1606.herokuapp.com/node/basic/api/token',
+                'http://' + window.location.host + '/api/token',
+                document.getElementById('viewerDiv'));
+
+            var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
+
+            urn = (paramUrn !== '' ? paramUrn : urn);
+
+            if (urn.substring(0,4)!="urn:")
+                urn = 'urn:' + urn;
+
+            adnViewerMng.loadDocument(urn, onViewerInitialized, onError);
+
+
+            
+            
+        });
+
+        
+        var onViewerInitialized = function(viewer)
+            {
+
+                //get the viewer object
+                //var viewer = adnViewerMng.getViewer();
+
+                //Now it's your turn to have fun with viewer client API...
+                //For example, you can get the camera of viewer
+                var camera = viewer.getCamera();
+                console.dir(camera);
+
+            };
+
+        var onError = function(error)
+        {
+            console.error(error);
+        };
+
+
+        //        $(document).ready(function () {
+        //
+        //            var getToken =  function() {
+        //
+        //                var xhr = new XMLHttpRequest();
+        //
+        //                xhr.open("GET", 'http://' + window.location.host + '/api/token', false);
+        //                xhr.send(null);
+        //
+        //                return xhr.responseText;
+        //            }
+        //
+        //            function initializeViewer(containerId, documentId, role) {
+        //
+        //                var viewerContainer = document.getElementById(containerId);
+        //
+        //                var viewer = new Autodesk.Viewing.Private.GuiViewer3D(
+        //                        viewerContainer);
+        //
+        //                viewer.start();
+        //
+        //                Autodesk.Viewing.Document.load(documentId,
+        //
+        //                        function (document) {
+        //
+        //                            var rootItem = document.getRootItem();
+        //
+        //                            var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(
+        //                                    rootItem,
+        //                                    { 'type': 'geometry', 'role': role },
+        //                                    true);
+        //
+        //                            viewer.load(document.getViewablePath(geometryItems[0]));
+        //                        },
+        //                        // onErrorCallback
+        //                        function (msg) {
+        //                            console.log("Error loading document: " + msg);
+        //                        }
+        //                );
+        //            }
+        //
+        //            function initialize() {
+        //
+        //                var options = {
+        //                    env: "AutodeskProduction",
+        //                    getAccessToken: getToken,
+        //                    refreshToken: getToken
+        //                };
+        //
+        //                Autodesk.Viewing.Initializer(options, function () {
+        //
+        //                    initializeViewer('viewerDiv', urn, '3d');
+        //                });
+        //            }
+        //
+        //            initialize();
+        //        });
+
+    </script>
+
+</head>
+
+<body style="margin:0">
+
+    <div id="viewerDiv">
+    </div>
+
+</body>
+</html>
