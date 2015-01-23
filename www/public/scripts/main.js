@@ -79,6 +79,34 @@ jQuery(document).ready(function($) {
 	    }
 	}
 
+    var addToCombo = function(urn, filename){
+        var newOption = new  Option(filename, urn);
+        $('#inputModellist').append(newOption);
+
+        //select the item by default
+        $('#inputModellist').val(urn);
+
+        $('#inputSelectedUrn').val(urn);
+        var viewerUrl = 'TestViewerApiLive.html?urn='+urn;
+
+        window.open(viewerUrl,"iframeTestbed");
+
+    }
+
+    var createAutoClosingAlert = function(message) {
+        $('#alert_placeholder').html('<div id="alertDiv" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + message + '</div>');
+        var alert = $('#alertDiv');
+        window.setTimeout(function () { alert.alert('close'); }, 50000);
+    }
+
+    $('#btnFullscreen').click(function()
+    {
+        var urn = $('#inputSelectedUrn').val();
+        var viewerUrl = 'TestViewerApiLive.html?urn='+urn;
+
+        window.open(viewerUrl);
+    })
+
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -115,6 +143,7 @@ jQuery(document).ready(function($) {
         for (var i = 0; i < files.length; ++i) {
             var file = files[i];
             console.log('Uploading file: ' + file.name + ' ...');
+            createAutoClosingAlert('Uploading file: ' + file.name + ' ...');
             viewDataClient.uploadFileAsync(
                 file,
                 bucket,
@@ -130,6 +159,7 @@ jQuery(document).ready(function($) {
                         registerResponse.Result === "Created") {
                         console.log("Registration result: " +
                             registerResponse.Result);
+                        createAutoClosingAlert("You model is upload successfully. Translation starting...");
                         console.log('Starting translation: ' +
                             fileId);
                         checkTranslationStatus(
@@ -139,6 +169,9 @@ jQuery(document).ready(function($) {
                             function (viewable) {
                                 console.log("Translation successful: " +
                                     response.file.name);
+                                createAutoClosingAlert("Translation successful: " +
+                                    response.file.name + ". It is added into following combo box.");
+                      
                                 console.log("Viewable: ");
                                 console.log(viewable);
                                 //var fileId = viewDataClient.fromBase64(
@@ -186,18 +219,7 @@ jQuery(document).ready(function($) {
     };
 
 
-    var addToCombo = function(urn, filename){
-    	var newOption = new  Option(filename, urn);
-    	$('#inputModellist').append(newOption);
-    }
 
-    $('#btnFullscreen').click(function()
-    {
-        var urn = $('#inputSelectedUrn').val();
-        var viewerUrl = 'TestViewerApiLive.html?urn='+urn;
-
-        window.open(viewerUrl);
-    })
 
 
 	///////////jQuery(document).ready() running from here//////////////////////
