@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
 		// generating the screen-shot
 		viewDataClient.getThumbnailAsync (
             viewDataClient.fromBase64(urn),
-            setScreenshot,
+            setScreenshot, //callback
             onError,
             150,//width,
             150,//height,
@@ -203,10 +203,12 @@ jQuery(document).ready(function($) {
                 viewDataClient.getViewableAsync(
                     fileId,
                     function (response) {
-                        console.log(
-                            'Translation Progess ' +
+                        var msg = 'Translation Progess ' +
                             fileId + ': '
-                            + response.progress);
+                            + response.progress;
+                        console.log(msg);
+                        createAutoClosingAlert(msg);
+
                         if (response.progress === 'complete') {
                             clearInterval(timer);
                             onSuccess(response);
