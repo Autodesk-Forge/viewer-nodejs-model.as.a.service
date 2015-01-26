@@ -1,34 +1,28 @@
 jQuery(document).ready(function($) {
 
-	var viewDataClient = new Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient(
-	              'https://developer.api.autodesk.com',
-	              'https://still-spire-1606.herokuapp.com/api/token');
+    var viewDataClient = new Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient(
+                  'https://developer.api.autodesk.com',
+                  'https://still-spire-1606.herokuapp.com/api/token');
 
-	////////////////////
-	//private const
+    ////////////////////
+    //private const
 
-	var files= [];
-	var bucket = 'model-as-a-service20150121';
+    var files= [];
+    var bucket = 'model-as-a-service20150126';
 
-	//////////////////
+    //////////////////
 
-	$('#inputModellist').change(function(event) {
-		/* Show the screen-shot */
-		var urn = $('#inputModellist').val();
+    $('#inputModellist').change(function(event) {
+        /* Show the screen-shot */
+        var urn = $('#inputModellist').val();
 
-		$('#inputSelectedUrn').val(urn);
+        $('#inputSelectedUrn').val(urn);
 
-		console.log('selected urn:' + urn);
-		// generating the screen-shot
-		viewDataClient.getThumbnailAsync (
-            viewDataClient.fromBase64(urn),
-            setScreenshot, //callback
-            onError,
-            150,//width,
-            150,//height,
-            null//guid
-            );
+        console.log('selected urn:' + urn);
+        
 
+        // generating the screen-shot
+        getThumbnail(urn, setScreenshot);
 
         //open in testbed as iframe
         var urn = $('#inputSelectedUrn').val();
@@ -36,48 +30,60 @@ jQuery(document).ready(function($) {
 
         window.open(viewerUrl,"iframeTestbed");
 
-	});
+    });
+
+    var getThumbnail = function(urn, callback)
+    {
+        
+        viewDataClient.getThumbnailAsync (
+            viewDataClient.fromBase64(urn),
+            callback, //callback
+            onError,
+            150,//width,
+            150,//height,
+            null//guid
+            );
+    }
+
+    var setScreenshot = function(base64){
+
+        $('#screenshot').attr('src','data:image/png;base64,' + base64);
+    };
+
+    var onError = function(err){
+        console.error(err);
+    };
 
 
-	var setScreenshot = function(base64){
+    $('#btnGetEmbededingcode').click(function(event) {
+        
+        //replace with the selected urn
 
-		$('#screenshot').attr('src','data:image/png;base64,' + base64);
-	};
+        var urn = $('#inputModellist').val();
 
-	var onError = function(err){
-		console.error(err);
-	};
+        if (urn) {
+            var code = $('#codecontent').text();
+            code = code.replace('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==',urn);
+            $('#codecontent').text(code);
+        };
 
-
-	$('#btnGetEmbededingcode').click(function(event) {
-		
-		//replace with the selected urn
-
-		var urn = $('#inputModellist').val();
-
-		if (urn) {
-			var code = $('#codecontent').text();
-			code = code.replace('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==',urn);
-			$('#codecontent').text(code);
-		};
-
-		selectText('codecontent');
+        selectText('codecontent');
 
 
-	});
+    });
 
 
-	var selectText = function(elementId) {
-	    if (document.selection) {
-	        var range = document.body.createTextRange();
-	        range.moveToElementText(document.getElementById(elementId));
-	        range.select();
-	    } else if (window.getSelection) {
-	        var range = document.createRange();
-	        range.selectNode(document.getElementById(elementId));
-	        window.getSelection().addRange(range);
-	    }
-	}
+    var selectText = function(elementId) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(elementId));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(elementId));
+            window.getSelection().addRange(range);
+        }
+    }
 
     var addToCombo = function(urn, filename){
         var newOption = new  Option(filename, urn);
@@ -87,6 +93,10 @@ jQuery(document).ready(function($) {
         $('#inputModellist').val(urn);
 
         $('#inputSelectedUrn').val(urn);
+
+        // generating the screen-shot
+        getThumbnail(urn, setScreenshot);
+
         var viewerUrl = 'TestViewerApiLive.html?urn='+urn;
 
         window.open(viewerUrl,"iframeTestbed");
@@ -109,7 +119,7 @@ jQuery(document).ready(function($) {
 
 
 
-	///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
     // 
     //
     ///////////////////////////////////////////////////////////////////////////
@@ -224,31 +234,31 @@ jQuery(document).ready(function($) {
 
 
 
-	///////////jQuery(document).ready() running from here//////////////////////
+    ///////////jQuery(document).ready() running from here//////////////////////
 
 
-	// Tell FileDrop we can deal with iframe uploads using this URL:
-	var options = {
-		//iframe: {url: 'upload.php'}
-	};
-	// Attach FileDrop to an area ('zone' is an ID but you can also give a DOM node):
-	var zone = new FileDrop('zone', options);
+    // Tell FileDrop we can deal with iframe uploads using this URL:
+    var options = {
+        //iframe: {url: 'upload.php'}
+    };
+    // Attach FileDrop to an area ('zone' is an ID but you can also give a DOM node):
+    var zone = new FileDrop('zone', options);
 
-	// Do something when a user chooses or drops a file:
-	zone.event('send', function (selectedFiles) {
-	// // Depending on browser support files (FileList) might contain multiple items.
-	selectedFiles.each(function (file) {
-	  // // React on successful AJAX upload:
-	  // file.event('done', function (xhr) {
-	  //   // 'this' here points to fd.File instance that has triggered the event.
-	  //   alert('Done uploading ' + this.name + ', response:\n\n' + xhr.responseText);
-	  // });
+    // Do something when a user chooses or drops a file:
+    zone.event('send', function (selectedFiles) {
+    // // Depending on browser support files (FileList) might contain multiple items.
+    selectedFiles.each(function (file) {
+      // // React on successful AJAX upload:
+      // file.event('done', function (xhr) {
+      //   // 'this' here points to fd.File instance that has triggered the event.
+      //   alert('Done uploading ' + this.name + ', response:\n\n' + xhr.responseText);
+      // });
 
-		//add the native file to the array
-	    files.push(file.nativeFile);
-	    //console.log(file.name);
+        //add the native file to the array
+        files.push(file.nativeFile);
+        //console.log(file.name);
 
-    	viewDataClient.getBucketDetailsAsync(
+        viewDataClient.getBucketDetailsAsync(
             bucket,
             //onSuccess
             function (bucketResponse) {
@@ -265,22 +275,22 @@ jQuery(document).ready(function($) {
 
       });
 
-	  // // Send the file:
-	  // file.sendTo('upload.php');
-	});
+      // // Send the file:
+      // file.sendTo('upload.php');
+    });
     
 
 
-	// React on successful iframe fallback upload (this is separate mechanism
-	// from proper AJAX upload hence another handler):
-	zone.event('iframeDone', function (xhr) {
-	alert('Done uploading via <iframe>, response:\n\n' + xhr.responseText);
-	});
+    // React on successful iframe fallback upload (this is separate mechanism
+    // from proper AJAX upload hence another handler):
+    zone.event('iframeDone', function (xhr) {
+    alert('Done uploading via <iframe>, response:\n\n' + xhr.responseText);
+    });
 
-	// A bit of sugar - toggling multiple selection:
-	fd.addEvent(fd.byID('multiple'), 'change', function (e) {
-	zone.multiple(e.currentTarget || e.srcElement.checked);
-	});
+    // A bit of sugar - toggling multiple selection:
+    fd.addEvent(fd.byID('multiple'), 'change', function (e) {
+    zone.multiple(e.currentTarget || e.srcElement.checked);
+    });
 
-	
+    
 });

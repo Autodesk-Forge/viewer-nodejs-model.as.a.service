@@ -36,7 +36,7 @@
 		top: 0; left: 0; bottom: 0; right: 60%;
 		}
 		#code_editors .code_box {
-		height: 33%; width: 100%;
+		height: 50%; width: 100%;
 		position: relative;
 		}
 		.code_box h3 {
@@ -50,6 +50,7 @@
 		z-index: 10;
 		}
 		.code_box textarea {
+		width: 100%;
 		position: absolute;
 		left: 0; right: 0; top: 30px; bottom: 0;
 		resize: none; border: 0;
@@ -90,6 +91,10 @@
 					<h3>JavaScript</h3>
 					<textarea name="js"></textarea>
 				</div>
+				<div id="console" class="code_box">
+					<h3>Console</h3>
+					<textarea name="console"></textarea>
+				</div>
 			</section>
 			
 			<!-- Sandboxing -->
@@ -106,6 +111,47 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+		 <!-- Viewer -->
+ 
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+    <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script>
+    <script>
+
+    	//global variable 
+    	var oViewer ;
+
+        //replace with your own urn ...
+		var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==';
+        $(document).ready(function () {
+            var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
+                'https://still-spire-1606.herokuapp.com/api/token',
+                document.getElementById('viewerDiv'));
+
+            var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
+            urn = (paramUrn !== '' ? paramUrn : urn);
+            if (urn.substring(0,4)!="urn:")
+                urn = 'urn:' + urn;
+            adnViewerMng.loadDocument(urn, onViewerInitialized, onError);
+        });
+
+        var onViewerInitialized = function(viewer)
+        {
+        	//export the viewer object to global object
+        	oViewer = viewer;
+
+            //Now it's your turn to have fun with viewer client API...
+            //For example, you can get the camera of viewer
+            var camera = viewer.getCamera();
+            console.dir(camera);
+        };
+        var onError = function(error)
+        {
+            console.error(error);
+        };
+    </script>
+
+
 		
 		<script src="http://codemirror.net/lib/codemirror.js"></script>
 		<!-- For HTML/XML -->
@@ -120,32 +166,37 @@
 		
 		
 
-		var getTemplateCode = function(){
-			var codeContentContainer;
-			//for iframe usage
-			if (opener) {
-				codeContentContainer = opener.document.getElementById('codecontent');
-			} else if (parent) {
-				codeContentContainer = parent.document.getElementById('codecontent')
-			};
-
-			if(codeContentContainer){
-				
-				return  codeContentContainer.innerText;
-
-			}
-			else
-			{
-				return '';
-			}
-		}
-
 		var runJsCode = function(){
 			
+			
 			var jsCode = js_editor.getValue();
+			try{
 
-			eval(jsCode);
+				//save the code into localStorage every running
+				localStorage.setItem('code',jsCode);
+
+				//if oViewer exsit, the viewer has been initialized,
+				//ready to run viewer API code
+				if(typeof(oViewer)!=='undefined'){
+
+					eval(jsCode);
+					//clear error msg if no error 
+					console_box_editor.setValue('');
+				}
+				else
+				{
+					console.log('viewer is not initialied yet...');
+				}
+			}
+			catch (e){
+
+				var msg = e.name + ":" + e.message;
+				console_box_editor.setValue(msg);
+				console.log(msg);
+			}
 		}
+			
+		
 
 	// EDITORS
 
@@ -167,17 +218,32 @@
 	var js_box = document.querySelector('#js textarea');
 	var js_editor = CodeMirror.fromTextArea(js_box, cm_opt);
 
+	var console_box = document.querySelector('#console textarea');
+	var console_box_editor = CodeMirror.fromTextArea(console_box, cm_opt);
+
 	js_editor.on('change', function (inst, changes) {
+		//console.log(inst);
+		//console.log(changes);
 		runJsCode();
 	});
 
 	// SETTING CODE EDITORS INITIAL CONTENT
 
-	var templateCode = 'oViewer.setBackgroundColor(255, 255, 255, 255, 255, 255);\n';
-	templateCode = templateCode + 'oViewer.explode(0.7);';
-			
+	var initialScript = '';
+	if (localStorage.getItem('code')) {
+		initialScript = localStorage.getItem('code');
+	}
+	else{
+		initialScript = 'oViewer.setBackgroundColor(255, 255, 255, 255, 255, 255);\n';
+		initialScript = initialScript + 'oViewer.explode(0.7);';
+	}		
 
-	js_editor.setValue(templateCode);
+	js_editor.setValue(initialScript);
+
+	
+	//runJsCode();
+	
+	
 
 
 
@@ -216,44 +282,6 @@
 </script>
 
 
- <!-- Viewer -->
- 
-    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
-    <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script>
-    <script>
-
-    	//global variable 
-    	var oViewer ;
-
-        //replace with your own urn ...
-		var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==';
-        $(document).ready(function () {
-            var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
-                'https://still-spire-1606.herokuapp.com/api/token',
-                document.getElementById('viewerDiv'));
-
-            var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
-            urn = (paramUrn !== '' ? paramUrn : urn);
-            if (urn.substring(0,4)!="urn:")
-                urn = 'urn:' + urn;
-            adnViewerMng.loadDocument(urn, onViewerInitialized, onError);
-        });
-
-        var onViewerInitialized = function(viewer)
-        {
-        	//export the viewer object to global object
-        	oViewer = viewer;
-
-            //Now it's your turn to have fun with viewer client API...
-            //For example, you can get the camera of viewer
-            var camera = viewer.getCamera();
-            console.dir(camera);
-        };
-        var onError = function(error)
-        {
-            console.error(error);
-        };
-    </script>
 
 </body>
 </html>

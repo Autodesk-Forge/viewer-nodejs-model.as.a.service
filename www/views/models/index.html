@@ -16,16 +16,12 @@
 		<link rel="stylesheet" type="text/css" href="public/styles/style.css">
 		<link rel="stylesheet" type="text/css" href="public/styles/filedrop.css">
 		<style type="text/css">
-
-
-		.block-upload-models {
+		
+		.block-choose-models {
 		background-color: #DDDDDD;
 		}
-		.block-choose-models {
-		background-color: #AAAAAA;
-		}
 		.block-testbed {
-		background-color: #888888;
+		background-color: #AAAAAA;
 		}
 		.scrollblock {
 		position: relative;
@@ -34,111 +30,124 @@
 		padding-top: 80px;
 		padding-bottom: 80px;
 		}
-
 		</style>
-
 	</head>
 	<body>
 		
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Model as a Service</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-					</div><!--/.nav-collapse -->
-				</div>
-			</nav>
-			<div class="container"> 
-				<div class="starter-template">
-					<h1>Boost your 3D model viewer with View and Data API</h1>
-					<p class="lead">Just choose a model, get the embedding code and paste into your web page.</p>
-				</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Model as a Service</a>
 			</div>
-				<section id="section-upload-models" class="scrollblock block-upload-models">
-				<div class="container">
-					<noscript style="color: maroon">
-					<h2>JavaScript is disabled in your browser. Drag and Drop are not supported.</h2>
-					</noscript>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Upload your own model</h3>
-						</div>
-						<div class="panel-body">
-							<legend>Drap and Drop to upload your models</legend>
-							<!-- A FileDrop area. Can contain any text or elements, or be empty.
-							Can be of any HTML tag too, not necessary fieldset. -->
-							<fieldset id="zone">
-								<p>Drop a file inside&hellip;</p>
-								<p>Or click here to <em>Browse</em>..</p>
-								<!--
-								<p style="z-index: 10; position: relative">
-								<input type="checkbox" id="multiple">
-								<label for="multiple">Allow multiple selection</label>
-								</p>
-								-->
-							</fieldset>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</nav>
+		<div class="container">
+			<div class="starter-template">
+				<h1>Boost your 3D model viewer with View and Data API</h1>
+				<p class="lead">Just choose a model, get the embedding code and paste into your web page.</p>
+			</div>
+		</div>
 
-							<div id="alert_placeholder" style="padding: 10px"></div>
-							<div>
-								<span>Please note that your uploaded models only persist for 24 hrs. It is not visible for others, and will be removed from the list when the page is refreshed. </span>
-							</div>
-						</div>
+		<section id="section-choose-models" class="scrollblock block-choose-models">
+			<div class="container">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Availible Models</h3>
 					</div>
-				</div>
-
-				</section>
-				<section id="section-choose-models" class="scrollblock block-choose-models">
-				<div class="container">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Availible Models</h3>
-						</div>
-						<div class="panel-body">
-							
-							<legend>Choose a model you want to try</legend>
-							
-							<div class="form-group">
-								<label for="inputModellist">Models:</label>
-								
-								<select name="modellist" id="inputModellist" class="form-control">
-									<option value="">-- Select One --</option>
-									<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==">Model 1</option>
-									<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6ZGFuaWVsZHV0ZXN0YnVja2V0MTEvU2VhdC5kd2Z4">Seat</option>
-									
-								</select>
-							</div>
-							<div>
-								<input type="text" name="selectedUrn" id="inputSelectedUrn" class="form-control" value="" required="required" pattern="" title="">
-								
-								
-								<img id="screenshot" class="img-thumbnail img-responsive" src=""/>
-								<br/>
-							
-								
-								<a class="btn btn-danger" id='btnGetEmbededingcode' data-toggle="modal" href='#modal-id'>Get embedding code</a>
-								<div class="modal fade" id="modal-id">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h4 class="modal-title">Embedding Code</h4>
+					<div class="panel-body">
+						
+						<legend>Choose a model you want to try, or upload your own model</legend>
+						
+						<div class="form-group">
+							<a class="btn btn-warning" id='btnUploadModel' data-toggle="modal" href='#modal-uploadModel'>Upload you own model</a>
+							<div class="modal fade" id="modal-uploadModel">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title">Upload you own model</h4>
+										</div>
+										<div class="modal-body">
+											
+											<noscript style="color: maroon">
+											<h2>JavaScript is disabled in your browser. Drag and Drop are not supported.</h2>
+											</noscript>
+											
+											
+											<legend>Drap and Drop to upload your models</legend>
+											<!-- A FileDrop area. Can contain any text or elements, or be empty.
+											Can be of any HTML tag too, not necessary fieldset. -->
+											<fieldset id="zone">
+												<p>Drop a file inside&hellip;</p>
+												<p>Or click here to <em>Browse</em>..</p>
+												<!--
+												<p style="z-index: 10; position: relative">
+												<input type="checkbox" id="multiple">
+												<label for="multiple">Allow multiple selection</label>
+												</p>
+												-->
+											</fieldset>
+											<div id="alert_placeholder" style="padding: 10px"></div>
+											<div>
+												<span>Please note that your uploaded models only persist for 24 hrs. It is not visible for others, and will be removed from the list when the page is refreshed. </span>
 											</div>
-											<div class="modal-body">
-												<p>Copy and paste following code snippet into your own web page, and replace the urn with selected one.</p>
+											
+											
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+											
+										</div>
+										</div><!-- /.modal-content -->
+										</div><!-- /.modal-dialog -->
+										</div><!-- /.modal -->
+										
+										
+									</div>
+									<label for="inputModellist">Models:</label>
+									
+									<select name="modellist" id="inputModellist" class="form-control">
+										<option value="">-- Select One --</option>
+										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvU3VzcGVuc2lvbi5kd2Y=">Suspension</option>
+										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvU2VhdC5kd2Z4">Seat</option>
+										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvQ2hhc3Npcy5kd2Y=">Chassis</option>
+										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvRHJpbGwuZHdmeA==">Drill</option>
+										
+									</select>
+									
+									<label for="inputSelectedUrn">Urn:</label>
+									<input type="text" name="selectedUrn" id="inputSelectedUrn" class="form-control" value="" required="required" pattern="" title="">
+									
+									
+									<img id="screenshot" class="img-thumbnail img-responsive" src=""/>
+									<br/>
+									
+									
+									<a class="btn btn-danger" id='btnGetEmbededingcode' data-toggle="modal" href='#modal-embeddingCode'>Get embedding code</a>
+									<div class="modal fade" id="modal-embeddingCode">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title">Embedding Code</h4>
+												</div>
+												<div class="modal-body">
+													<p>Copy and paste following code snippet into your own web page, and replace the urn with selected one.</p>
   <pre id="codecontent">
-												<!--Embeded code begin-->
+														<!--Embeded code begin-->
 &lt;body style=&quot;margin:0&quot;&gt;
     &lt;div id=&quot;viewerDiv&quot;&gt;
     &lt;/div&gt;
@@ -150,12 +159,10 @@
     &lt;script src=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js&quot;&gt;&lt;/script&gt;
     &lt;script&gt;
-
-    	//global variable 
-    	var oViewer ;
-
+    //global variable 
+    var oViewer ;
         //replace with your own urn ...
-		var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==&#39;;
+var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==&#39;;
         $(document).ready(function () {
             var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
                 &#39;https://still-spire-1606.herokuapp.com/api/token&#39;,
@@ -168,9 +175,8 @@
         });
         var onViewerInitialized = function(viewer)
         {
-        	//export the viewer object to global object
-        	oViewer = viewer;
-
+        //export the viewer object to global object
+        oViewer = viewer;
             //Now it&#39;s your turn to have fun with viewer client API...
             //For example, you can get the camera of viewer
             var camera = viewer.getCamera();
@@ -182,68 +188,64 @@
         };
     &lt;/script&gt;
 &lt;/body&gt;
-												<!--Embeded code end-->
+														<!--Embeded code end-->
 </pre>
+														
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+														
+													</div>
+													</div><!-- /.modal-content -->
+													</div><!-- /.modal-dialog -->
+													</div><!-- /.modal -->
+												</div>
+												
+												
+												
+												
 												
 											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												
-											</div>
-											</div><!-- /.modal-content -->
-											</div><!-- /.modal-dialog -->
-											</div><!-- /.modal -->
 										</div>
-										
-										
-										
-										
+									
+								</section>
+								<section id="section-testbed" class="scrollblock block-testbed">
+									<div class="container">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h3 class="panel-title">Try it live</h3>
+											</div>
+											<div class="panel-body">
+												<legend>Test your API with following testbed</legend>
+												<button class="btn btn-primary glyphicon glyphicon-fullscreen pull-right" id="btnFullscreen">&nbspFull Screen</button>
+												<!-- 16:9 aspect ratio -->
+												<div class="embed-responsive embed-responsive-16by9">
+													<iframe src="empty.html" class="embed-responsive-item" style="width:100%;height:300px;boarder:0px;pandding:0px;" boarder="0" padding="0" id="iframeTestbed" name='iframeTestbed'></iframe>
+												</div>
+											</div>
+										</div>
 										
 									</div>
-								</div>
-							</div>
-							</section>
-
-							<section id="section-testbed" class="scrollblock block-testbed">
-							<div class="container">
-								<div class="panel panel-default">
-									  <div class="panel-heading">
-											<h3 class="panel-title">Try it live</h3>
-									  </div>
-									  <div class="panel-body">
-											<legend>Test your API with following testbed</legend>
-											<button class="btn btn-primary glyphicon glyphicon-fullscreen pull-right" id="btnFullscreen">&nbspFull Screen</button>
-											<!-- 16:9 aspect ratio -->
-											<div class="embed-responsive embed-responsive-16by9">
-												<iframe src="empty.html" class="embed-responsive-item" style="width:100%;height:300px;boarder:0px;pandding:0px;" boarder="0" padding="0" id="iframeTestbed" name='iframeTestbed'></iframe>
-										</div>
-									  </div>
-								</div>
-							
-							</div>	
-							</section>
-
-							<br/>
-							<div align="center">
-								<footer style="text-align:center">
-									<p>Model as a Service, Accelerating Hackathons!</p>
-									<p>@Autodesk Developer Network, Developed by Daniel Du</p>
-
-								</footer> 
+								</section>
 								<br/>
-								<br/>
-							</div>
-
-					
-							<!-- jQuery -->
-							<script src="//code.jquery.com/jquery.js"></script>
-							<!-- Bootstrap JavaScript -->
-							<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-							<!-- <script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script> -->
-							<script type="text/javascript" src="public/scripts/Autodesk.ADN.Toolkit.ViewData.js"></script>
-							<script type="text/javascript" src="public/scripts/main.js"></script>
-							<script type="text/javascript" src="public/scripts/filedrop.js"></script>
-						
-							
-						</body>
-					</html>
+								<div align="center">
+									<footer style="text-align:center">
+										<p>Model as a Service, Accelerating Hackathons!</p>
+										<p>@Autodesk Developer Network, Developed by Daniel Du</p>
+									</footer>
+									<br/>
+									<br/>
+								</div>
+								
+								<!-- jQuery -->
+								<script src="//code.jquery.com/jquery.js"></script>
+								<!-- Bootstrap JavaScript -->
+								<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+								<!-- <script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script> -->
+								<script type="text/javascript" src="public/scripts/Autodesk.ADN.Toolkit.ViewData.js"></script>
+								<script type="text/javascript" src="public/scripts/main.js"></script>
+								<script type="text/javascript" src="public/scripts/filedrop.js"></script>
+								
+								
+							</body>
+						</html>
