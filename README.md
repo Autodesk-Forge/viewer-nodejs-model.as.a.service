@@ -3,9 +3,7 @@
 
 ##Description
 
-*This sample is part of the [Developer-Autodesk/Autodesk-View-and-Data-API-Samples](https://github.com/Developer-Autodesk/autodesk-view-and-data-api-samples) repository.*
-
-A sample demonstrating the workflow and provide a tool to learn view and data API quickly.
+A sample in Node.js demonstrating the workflow and provide a tool to learn view and data API quickly.
 
 Live demo: [http://still-spire-1606.herokuapp.com](http://still-spire-1606.herokuapp.com/)
 
@@ -18,7 +16,7 @@ None
 
 * Install Node.js
 * Run "npm install" command from the server directory
-* Replace the place holder with your own credentials in credentials.js
+* Get your own keys for view and data API from http://developer.autodesk.com and replace the place holder with your own credentials in credentials.js
 * Run the server: "node server.js" from command line
 * Connect to server locally using a WebGL-compatible browser: http://localhost:3000
 
