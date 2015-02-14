@@ -125,7 +125,7 @@
 		var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==';
         $(document).ready(function () {
             var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
-                'https://still-spire-1606.herokuapp.com/api/token',
+                'http://' + window.location.host + '/api/rawtoken',
                 document.getElementById('viewerDiv'));
 
             var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
@@ -142,8 +142,8 @@
 
             //Now it's your turn to have fun with viewer client API...
             //For example, you can get the camera of viewer
-            var camera = viewer.getCamera();
-            console.dir(camera);
+            //var camera = viewer.getCamera();
+            //console.dir(camera);
         };
         var onError = function(error)
         {
@@ -234,7 +234,8 @@
 		initialScript = localStorage.getItem('code');
 	}
 	else{
-		initialScript = 'oViewer.setBackgroundColor(255, 255, 255, 255, 255, 255);\n';
+		initialScript = '//oViewer is global variable which is the viewer instance for this sample\n';
+		initialScript = initialScript + 'oViewer.setBackgroundColor(255, 255, 255, 255, 255, 255);\n';
 		initialScript = initialScript + 'oViewer.explode(0.7);';
 	}		
 

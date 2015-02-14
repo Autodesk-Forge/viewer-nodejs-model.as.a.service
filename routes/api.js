@@ -44,7 +44,7 @@ router.get('/token', function (req, res) {
 
             if (!error && response.statusCode == 200) {
 
-                var authResponse = JSON.parse(body);
+                var accessToken = JSON.parse(body);
 
                 // Website you wish to allow to connect
                 res.setHeader('Access-Control-Allow-Origin', '*');
@@ -59,7 +59,52 @@ router.get('/token', function (req, res) {
                 // // to the API (e.g. in case you use sessions)
                 // res.setHeader('Access-Control-Allow-Credentials', true);
 
-                res.send(authResponse.access_token);
+                res.send(accessToken.access_token);
+                
+            }
+        });
+});
+
+///////////////////////////////////////////////////////////////////////////////
+// Generates access token
+//
+///////////////////////////////////////////////////////////////////////////////
+router.get('/rawtoken', function (req, res) {
+
+
+    var creds = new credentials();
+
+    var params = {
+        client_id: creds.ClientId,
+        client_secret: creds.ClientSecret,
+        grant_type: 'client_credentials'
+    }
+
+    request.post(
+        creds.AuthenticateUrl,
+        { form: params },
+
+        function (error, response, body) {
+
+            if (!error && response.statusCode == 200) {
+
+                var accessToken = JSON.parse(body);
+
+                // Website you wish to allow to connect
+                res.setHeader('Access-Control-Allow-Origin', '*');
+
+                // Request methods you wish to allow
+                res.setHeader('Access-Control-Allow-Methods', 'GET');
+
+                // // Request headers you wish to allow
+                // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+                // // Set to true if you need the website to include cookies in the requests sent
+                // // to the API (e.g. in case you use sessions)
+                // res.setHeader('Access-Control-Allow-Credentials', true);
+
+                //res.send(accessToken.access_token);
+                res.send(body);
             }
         });
 });

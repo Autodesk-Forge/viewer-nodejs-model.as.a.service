@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
     var viewDataClient = new Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient(
                   'https://developer.api.autodesk.com',
-                  'https://still-spire-1606.herokuapp.com/api/token');
+                  'http://' + window.location.host + '/api/rawtoken');
 
     ////////////////////
     //private const
@@ -15,6 +15,16 @@ jQuery(document).ready(function($) {
     $('#inputModellist').change(function(event) {
         /* Show the screen-shot */
         var urn = $('#inputModellist').val();
+
+        if(urn === '')
+        {
+            //hide the screen shot
+            $('#screenshot').hide();
+            //clear the urn text box
+            $('#inputSelectedUrn').val('');
+
+            return;
+        }
 
         $('#inputSelectedUrn').val(urn);
 
@@ -47,6 +57,7 @@ jQuery(document).ready(function($) {
 
     var setScreenshot = function(base64){
 
+        $('#screenshot').show();
         $('#screenshot').attr('src','data:image/png;base64,' + base64);
     };
 
@@ -160,7 +171,7 @@ jQuery(document).ready(function($) {
                 file.name,
                 //onSuccess
                 function (response) {
-                    console.log('File upload successful:');
+                    console.log('File is uploaded successfully:');
                     console.log(response);
                     var fileId = response.objects[0].id;
                     var registerResponse =
@@ -169,7 +180,7 @@ jQuery(document).ready(function($) {
                         registerResponse.Result === "Created") {
                         console.log("Registration result: " +
                             registerResponse.Result);
-                        createAutoClosingAlert("You model is upload successfully. Translation starting...");
+                        createAutoClosingAlert("You model is uploaded successfully. Translation starting...");
                         console.log('Starting translation: ' +
                             fileId);
                         checkTranslationStatus(
@@ -177,9 +188,9 @@ jQuery(document).ready(function($) {
                             1000 * 60 * 5, //5 mins timeout
                             //onSuccess
                             function (viewable) {
-                                console.log("Translation successful: " +
+                                console.log("Translation is successful: " +
                                     response.file.name);
-                                createAutoClosingAlert("Translation successful: " +
+                                createAutoClosingAlert("Translation is successful: " +
                                     response.file.name + ". It is added into following combo box.");
                       
                                 console.log("Viewable: ");
@@ -192,7 +203,7 @@ jQuery(document).ready(function($) {
                 },
                 //onError
                 function (error) {
-                    console.log('File upload failed:');
+                    console.log('File uploading is failed:');
                     console.log(error);
                 });
         }

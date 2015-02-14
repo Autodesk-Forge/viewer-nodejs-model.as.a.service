@@ -72,22 +72,22 @@
 						<legend>Choose a model you want to try, or upload your own model</legend>
 						
 						<div class="form-group">
-							<a class="btn btn-warning" id='btnUploadModel' data-toggle="modal" href='#modal-uploadModel'>Upload you own model</a>
+							<a class="btn btn-warning" id='btnUploadModel' data-toggle="modal" href='#modal-uploadModel'>Upload your own model</a>
 							<div class="modal fade" id="modal-uploadModel">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-											<h4 class="modal-title">Upload you own model</h4>
+											<h4 class="modal-title">Upload your own model</h4>
 										</div>
 										<div class="modal-body">
 											
 											<noscript style="color: maroon">
-											<h2>JavaScript is disabled in your browser. Drag and Drop are not supported.</h2>
+											<h2>JavaScript is disabled in your browser. "Drag and Drop" feature is not supported.</h2>
 											</noscript>
 											
 											
-											<legend>Drap and Drop to upload your models</legend>
+											<legend>Drag and Drop to upload your model</legend>
 											<!-- A FileDrop area. Can contain any text or elements, or be empty.
 											Can be of any HTML tag too, not necessary fieldset. -->
 											<fieldset id="zone">
@@ -102,7 +102,7 @@
 											</fieldset>
 											<div id="alert_placeholder" style="padding: 10px"></div>
 											<div>
-												<span>Please note that your uploaded models only persist for 24 hrs. It is not visible for others, and will be removed from the list when the page is refreshed. </span>
+												<span>Please note that your uploaded model is not visible for others, and will be removed from the list once the page is refreshed. </span>
 											</div>
 											
 											
@@ -132,7 +132,7 @@
 									<input type="text" name="selectedUrn" id="inputSelectedUrn" class="form-control" value="" required="required" pattern="" title="">
 									
 									
-									<img id="screenshot" class="img-thumbnail img-responsive" src=""/>
+									<img id="screenshot" class="img-thumbnail img-responsive" style="display: none;" src=""/>
 									<br/>
 									
 									
@@ -145,9 +145,16 @@
 													<h4 class="modal-title">Embedding Code</h4>
 												</div>
 												<div class="modal-body">
-													<p>Copy and paste following code snippet into your own web page, and replace the urn with selected one.</p>
+													<p>Copy and paste following code snippet into your own web page, and replace the urn with the selected one.</p>
+													<ul>
+														<li>You need a web server to run your web page, the URL running the web page should be similar like http://hostname/yourpage.html, instead of file:///foldename/yourpage.html</li>
+														<li>Double check to make sure the urn is correct in following code snippet. It starts with 'urn:'</li>
+														<li>Clear the cache of your browser or run in incognito window if you see 'no Access-Control-Allow-Origin header' issue.</li>
+													</ul>
+
+													
   <pre id="codecontent">
-														<!--Embeded code begin-->
+														<!--Embedded code begin-->
 &lt;body style=&quot;margin:0&quot;&gt;
     &lt;div id=&quot;viewerDiv&quot;&gt;
     &lt;/div&gt;
@@ -161,11 +168,13 @@
     &lt;script&gt;
     //global variable 
     var oViewer ;
-        //replace with your own urn ...
+
+    //replace with your own urn ...
 var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==&#39;;
+
         $(document).ready(function () {
             var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
-                &#39;https://still-spire-1606.herokuapp.com/api/token&#39;,
+                &#39;https://still-spire-1606.herokuapp.com/api/rawtoken&#39;,
                 document.getElementById(&#39;viewerDiv&#39;));
             var paramUrn = Autodesk.Viewing.Private.getParameterByName(&#39;urn&#39;);
             urn = (paramUrn !== &#39;&#39; ? paramUrn : urn);
@@ -175,12 +184,13 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
         });
         var onViewerInitialized = function(viewer)
         {
-        //export the viewer object to global object
-        oViewer = viewer;
+        	//export the viewer object to global object
+        	oViewer = viewer;
+
             //Now it&#39;s your turn to have fun with viewer client API...
             //For example, you can get the camera of viewer
-            var camera = viewer.getCamera();
-            console.dir(camera);
+            //var camera = viewer.getCamera();
+            //console.dir(camera);
         };
         var onError = function(error)
         {
@@ -188,7 +198,7 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
         };
     &lt;/script&gt;
 &lt;/body&gt;
-														<!--Embeded code end-->
+														<!--Embedded code end-->
 </pre>
 														
 													</div>
@@ -216,11 +226,11 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 												<h3 class="panel-title">Try it live</h3>
 											</div>
 											<div class="panel-body">
-												<legend>Test your API with following testbed</legend>
-												<button class="btn btn-primary glyphicon glyphicon-fullscreen pull-right" id="btnFullscreen">&nbspFull Screen</button>
+												<legend>Test your API with following test-bed</legend>
+												<button class="btn btn-primary glyphicon glyphicon-fullscreen pull-right" id="btnFullscreen">&nbsp Full Screen</button>
 												<!-- 16:9 aspect ratio -->
 												<div class="embed-responsive embed-responsive-16by9">
-													<iframe src="empty.html" class="embed-responsive-item" style="width:100%;height:300px;boarder:0px;pandding:0px;" boarder="0" padding="0" id="iframeTestbed" name='iframeTestbed'></iframe>
+													<iframe src="empty.html" class="embed-responsive-item" style="width:100%;height:300px;boarder:0px;pandding:0px;" frameborder="0" boarder="0" padding="0" id="iframeTestbed" name='iframeTestbed'></iframe>
 												</div>
 											</div>
 										</div>
@@ -231,7 +241,7 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 								<div align="center">
 									<footer style="text-align:center">
 										<p>Model as a Service, Accelerating Hackathons!</p>
-										<p>@Autodesk Developer Network, Developed by Daniel Du</p>
+										<p>@Autodesk Developer Network</p>
 									</footer>
 									<br/>
 									<br/>
@@ -241,8 +251,8 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 								<script src="//code.jquery.com/jquery.js"></script>
 								<!-- Bootstrap JavaScript -->
 								<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-								<!-- <script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script> -->
-								<script type="text/javascript" src="public/scripts/Autodesk.ADN.Toolkit.ViewData.js"></script>
+								<script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script>
+								<!-- <script type="text/javascript" src="public/scripts/Autodesk.ADN.Toolkit.ViewData.js"></script> -->
 								<script type="text/javascript" src="public/scripts/main.js"></script>
 								<script type="text/javascript" src="public/scripts/filedrop.js"></script>
 								

@@ -391,8 +391,8 @@
   global.callAllOfObject = function (obj, event, args) {
     if (global.logging && global.hasConsole) {
       var handlers = obj.events[event] ? obj.events[event].length || 0 : 0
-      console.info('FileDrop ' + event + ' event (' + handlers + ') args:')
-      console.dir([args])
+      //console.info('FileDrop ' + event + ' event (' + handlers + ') args:')
+      //console.dir([args])
     }
 
     var preview = [global.onObjectCall].concat(obj.events.any)
