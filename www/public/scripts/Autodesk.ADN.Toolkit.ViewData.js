@@ -27,7 +27,14 @@ Autodesk.ADN.Toolkit.ViewData = Autodesk.ADN.Toolkit.ViewData || {};
 
 ///////////////////////////////////////////////////////////////////////////////
 // Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient
-//
+// Parameters:
+//      baseUrl: url of view and data API service, 
+//               for production environment, it is 'https://developer.api.autodesk.com'
+//      accessTokenOrUrl : 
+//          Opt 1: An access token in string, for example, 'Jp5wXTAiwfNSqYIktxxrJ3NPgtPP'
+//          Opt 2: An url which returns the access token string, 
+//              for example: http://still-spire-1606.herokuapp.com/api/token,
+//              it returns token string like 'Jp5wXTAiwfNSqYIktxxrJ3NPgtPP' 
 ///////////////////////////////////////////////////////////////////////////////
 Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient = function (
     baseUrl,
@@ -37,11 +44,11 @@ Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient = function (
     // Private Members
     //
     ///////////////////////////////////////////////////////////////////////////
-    _acessTokenUrl = accessTokenOrUrl;
+    var _acessTokenUrl = accessTokenOrUrl;
+    
+    var _accessToken = accessTokenOrUrl;
 
-    _accessToken = accessTokenOrUrl;
-
-    _baseUrl = baseUrl;
+    var _baseUrl = baseUrl;
 
     ///////////////////////////////////////////////////////////////////////////
     // Check if string is a valid url

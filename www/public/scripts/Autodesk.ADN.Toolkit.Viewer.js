@@ -25,16 +25,21 @@ AutodeskNamespace("Autodesk.ADN.Toolkit.Viewer");
 ///////////////////////////////////////////////////////////////////////////////
 // Autodesk.ADN.Toolkit.Viewer.AdnViewerManager
 //
+// Parameters:
+//      tokenOrUrl : 
+//          Opt 1: An access token in string, for example, 'Jp5wXTAiwfNSqYIktxxrJ3NPgtPP'
+//          Opt 2: An url which returns the access token string, 
+//              for example: http://still-spire-1606.herokuapp.com/api/token,
+//              it returns token string like 'Jp5wXTAiwfNSqYIktxxrJ3NPgtPP'
+//      viewerContainer : the html container of viewer
+//      environment(optional) :  it is 'AutodeskProduction' by default       
+//
 ///////////////////////////////////////////////////////////////////////////////
 Autodesk.ADN.Toolkit.Viewer.AdnViewerManager = function (
     tokenOrUrl,
     viewerContainer,
-    enviroment) {
+    environment) {
 
-
-    if (!enviroment) {
-        enviroment = 'AutodeskProduction';
-    };
     ///////////////////////////////////////////////////////////////////////////
     // Check if string is a valid url
     //
@@ -93,9 +98,7 @@ Autodesk.ADN.Toolkit.Viewer.AdnViewerManager = function (
     this.loadDocument = function (urn, onViewerInitialized, onError) {
 
         var options = {
-            //env: "AutodeskProduction"
-            //env: "AutodeskStaging"
-            env: enviroment
+            env: (environment ? environment : "AutodeskProduction")
         };
 
         // initialized with getToken callback
