@@ -3,15 +3,13 @@
 
 ##Description
 
-*This sample is part of the [Developer-Autodesk/Autodesk-View-and-Data-API-Samples](https://github.com/Developer-Autodesk/autodesk-view-and-data-api-samples) repository.*
-
 A sample demonstrating the workflow and provide a tool to learn view and data API quickly.
 
 Live demo: [http://still-spire-1606.herokuapp.com](http://still-spire-1606.herokuapp.com/)
 
 ##Dependencies
 
-None
+This sample is written in Javascript, hosted on a node.js web server. 
 
 ##Setup/Usage Instructions
 
