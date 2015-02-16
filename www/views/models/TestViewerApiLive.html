@@ -115,7 +115,8 @@
 		 <!-- Viewer -->
  
     <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
-    <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script>
+    <!-- <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script> -->
+    <script src="public/scripts/Autodesk.ADN.Toolkit.Viewer.js"></script>
     <script>
 
     	//global variable 
@@ -125,7 +126,7 @@
 		var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==';
         $(document).ready(function () {
             var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
-                'http://' + window.location.host + '/api/rawtoken',
+                'http://' + window.location.host + '/api/token',
                 document.getElementById('viewerDiv'));
 
             var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');

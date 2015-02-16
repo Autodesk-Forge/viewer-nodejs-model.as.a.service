@@ -2,12 +2,15 @@ jQuery(document).ready(function($) {
 
     var viewDataClient = new Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient(
                   'https://developer.api.autodesk.com',
-                  'http://' + window.location.host + '/api/rawtoken');
+                  'http://' + window.location.host + '/api/token');
 
     ////////////////////
     //private const
 
     var files= [];
+    //Change this bucket to your own, 
+    //It is should not be duplicated with others 
+    //Name it from a GUID may be a good idea.
     var bucket = 'model-as-a-service20150126';
 
     //////////////////
@@ -191,7 +194,7 @@ jQuery(document).ready(function($) {
                                 console.log("Translation is successful: " +
                                     response.file.name);
                                 createAutoClosingAlert("Translation is successful: " +
-                                    response.file.name + ". It is added into following combo box.");
+                                    response.file.name + ".");
                       
                                 console.log("Viewable: ");
                                 console.log(viewable);

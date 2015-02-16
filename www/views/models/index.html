@@ -145,7 +145,7 @@
 													<h4 class="modal-title">Embedding Code</h4>
 												</div>
 												<div class="modal-body">
-													<p>Copy and paste following code snippet into your own web page, and replace the urn with the selected one.</p>
+													<p>Copy and paste following code snippet into your own web page.</p>
 													<ul>
 														<li>You need a web server to run your web page, the URL running the web page should be similar like http://hostname/yourpage.html, instead of file:///foldename/yourpage.html</li>
 														<li>Double check to make sure the urn is correct in following code snippet. It starts with 'urn:'</li>
@@ -164,7 +164,7 @@
  &lt;!-- Viewer --&gt;
     &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css&quot;/&gt;
     &lt;script src=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;http://still-spire-1606.herokuapp.com/public/scripts/Autodesk.ADN.Toolkit.Viewer.js&quot;&gt;&lt;/script&gt;
     &lt;script&gt;
     //global variable 
     var oViewer ;
@@ -174,7 +174,7 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 
         $(document).ready(function () {
             var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
-                &#39;https://still-spire-1606.herokuapp.com/api/rawtoken&#39;,
+                &#39;https://still-spire-1606.herokuapp.com/api/token&#39;,
                 document.getElementById(&#39;viewerDiv&#39;));
             var paramUrn = Autodesk.Viewing.Private.getParameterByName(&#39;urn&#39;);
             urn = (paramUrn !== &#39;&#39; ? paramUrn : urn);
@@ -251,8 +251,8 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 								<script src="//code.jquery.com/jquery.js"></script>
 								<!-- Bootstrap JavaScript -->
 								<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-								<script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script>
-								<!-- <script type="text/javascript" src="public/scripts/Autodesk.ADN.Toolkit.ViewData.js"></script> -->
+								<!-- <script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script> -->
+								<script type="text/javascript" src="public/scripts/Autodesk.ADN.Toolkit.ViewData.js"></script>
 								<script type="text/javascript" src="public/scripts/main.js"></script>
 								<script type="text/javascript" src="public/scripts/filedrop.js"></script>
 								

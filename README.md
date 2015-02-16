@@ -3,7 +3,9 @@
 
 ##Description
 
-A sample in Node.js demonstrating the workflow and provide a tool to learn view and data API quickly.
+*This sample is part of the [Developer-Autodesk/Autodesk-View-and-Data-API-Samples](https://github.com/Developer-Autodesk/autodesk-view-and-data-api-samples) repository.*
+
+A sample demonstrating the workflow and provide a tool to learn view and data API quickly.
 
 Live demo: [http://still-spire-1606.herokuapp.com](http://still-spire-1606.herokuapp.com/)
 
@@ -16,7 +18,8 @@ None
 
 * Install Node.js
 * Run "npm install" command from the server directory
-* Get your own keys for view and data API from http://developer.autodesk.com and replace the place holder with your own credentials in credentials.js
+* Replace the place holder with your own credentials in credentials.js
+* In /public/scripts/main.js, around line 14, change the bucket name to your own unique name. Bucket name should not be duplicated with others, you can name it from GUID.
 * Run the server: "node server.js" from command line
 * Connect to server locally using a WebGL-compatible browser: http://localhost:3000
 
