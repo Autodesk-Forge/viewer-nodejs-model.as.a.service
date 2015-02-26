@@ -8,10 +8,8 @@ jQuery(document).ready(function($) {
     //private const
 
     var files= [];
-    //Change this bucket to your own, 
-    //It is should not be duplicated with others 
-    //Name it from a GUID may be a good idea.
-    var bucket = 'model-as-a-service20150126';
+
+    var bucket = Config.BucketName;
 
     //////////////////
 

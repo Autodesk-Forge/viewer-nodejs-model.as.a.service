@@ -17,7 +17,7 @@ This sample is written in Javascript, hosted on a node.js web server.
 * Install Node.js
 * Run "npm install" command from the server directory
 * Replace the place holder with your own credentials in credentials.js
-* In /public/scripts/main.js, around line 14, change the bucket name to your own unique name. Bucket name should not be duplicated with others, you can name it from GUID.
+* In www/public/scripts/config.js, around line 8, change the bucket name to your own unique name. Bucket name should not be duplicated with others, you can name it from GUID, all in lowercase.
 * Run the server: "node server.js" from command line
 * Connect to server locally using a WebGL-compatible browser: http://localhost:3000
 
