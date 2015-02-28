@@ -66,7 +66,7 @@ router.get('/token', function (req, res) {
 });
 
 ///////////////////////////////////////////////////////////////////////////////
-// Generates access token
+// Generates access token in raw json
 //
 ///////////////////////////////////////////////////////////////////////////////
 router.get('/rawtoken', function (req, res) {
@@ -87,8 +87,6 @@ router.get('/rawtoken', function (req, res) {
         function (error, response, body) {
 
             if (!error && response.statusCode == 200) {
-
-                var accessToken = JSON.parse(body);
 
                 // Website you wish to allow to connect
                 res.setHeader('Access-Control-Allow-Origin', '*');

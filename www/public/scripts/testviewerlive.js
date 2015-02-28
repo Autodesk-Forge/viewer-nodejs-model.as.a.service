@@ -5,7 +5,7 @@
 		var urn = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuNTYuMTYvRW5naW5lLmR3Zg==';
         $(document).ready(function () {
             var adnViewerMng = new Autodesk.ADN.Toolkit.Viewer.AdnViewerManager(
-                'http://' + window.location.host + '/api/token',
+                'http://' + window.location.host + '/api/rawtoken',
                 document.getElementById('viewerDiv'));
 
             var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
