@@ -137,6 +137,8 @@
 									
 									
 									<a class="btn btn-danger" id='btnGetEmbededingcode' data-toggle="modal" href='#modal-embeddingCode'>Get example HTML code to load model in viewer</a>
+									<a class="btn btn-primary pull-right" id="btnFullscreen">View it now and play with some client APIs</a>
+
 									<div class="modal fade" id="modal-embeddingCode">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -149,7 +151,8 @@
 													<ul>
 														<li>You need a web server to run your web page, the URL running the web page should be similar like http://hostname/yourpage.html, instead of file:///foldename/yourpage.html</li>
 														<li>Double check to make sure the urn is correct in following code snippet. It starts with 'urn:'</li>
-														<li>Clear the cache of your browser or run in incognito window if you see 'no Access-Control-Allow-Origin header' issue.</li>
+
+														<li><b>Clear the cache of your browser or run in incognito window if you see 'no Access-Control-Allow-Origin header' issue.</b></li>
 													</ul>
 
 													
@@ -221,24 +224,8 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 										</div>
 									
 								</section>
-								<section id="section-testbed" class="scrollblock block-testbed">
-									<div class="container">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h3 class="panel-title">Try it live</h3>
-											</div>
-											<div class="panel-body">
-												<legend>Test your API with following test-bed</legend>
-												<button class="btn btn-primary glyphicon glyphicon-fullscreen pull-right" id="btnFullscreen">&nbsp Full Screen</button>
-												<!-- 16:9 aspect ratio -->
-												<div class="embed-responsive embed-responsive-16by9">
-													<iframe src="empty.html" class="embed-responsive-item" style="width:100%;height:300px;boarder:0px;pandding:0px;" frameborder="0" boarder="0" padding="0" id="iframeTestbed" name='iframeTestbed'></iframe>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-								</section>
+
+
 								<br/>
 								<div align="center">
 									<footer style="text-align:center">
