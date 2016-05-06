@@ -1,7 +1,10 @@
 #Model as a Service Workflow Sample
 
+[![LMV](https://img.shields.io/badge/View%20%26%20Data%20API-v1.2.23-green.svg)](http://developer-autodesk.github.io/)
 
 ##Description
+
+![](./maas.png)
 
 A sample demonstrating the workflow and provide a tool to learn view and data API quickly.
 
@@ -15,12 +18,15 @@ This sample is written in Javascript, hosted on a node.js web server.
 
 
 * Install Node.js
-* Run "npm install" command from the server directory
+* Run `npm install` command from the server directory
 * Replace the place holder with your own credentials in credentials.js
 * In www/public/scripts/config.js, around line 8, change the bucket name to your own unique name. Bucket name should not be duplicated with others, you can name it from GUID, all in lowercase.
-* Run the server: "node server.js" from command line
+* Run the server: `node server.js` from command line
 * Connect to server locally using a WebGL-compatible browser: http://localhost:3000
 
+
+## Deploy
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## License
 
