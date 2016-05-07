@@ -35,11 +35,6 @@ jQuery(document).ready(function($) {
         // generating the screen-shot
         getThumbnail(urn, setScreenshot);
 
-        //open in testbed as iframe
-        var urn = $('#inputSelectedUrn').val();
-        var viewerUrl = 'TestViewerApiLive.html?urn='+urn;
-
-        window.open(viewerUrl,"iframeTestbed");
 
     });
 
@@ -109,16 +104,13 @@ jQuery(document).ready(function($) {
         // generating the screen-shot
         getThumbnail(urn, setScreenshot);
 
-        var viewerUrl = 'TestViewerApiLive.html?urn='+urn;
-
-        window.open(viewerUrl,"iframeTestbed");
 
     }
 
     var createAutoClosingAlert = function(message) {
         $('#alert_placeholder').html('<div id="alertDiv" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + message + '</div>');
         var alert = $('#alertDiv');
-        window.setTimeout(function () { alert.alert('close'); }, 50000);
+        window.setTimeout(function () { alert.alert('close'); }, 500000);
     }
 
     $('#btnFullscreen').click(function()
