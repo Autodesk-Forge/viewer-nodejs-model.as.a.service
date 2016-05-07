@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="public/styles/style.css">
 		<link rel="stylesheet" type="text/css" href="public/styles/filedrop.css">
 		<style type="text/css">
-		
+
 		.block-choose-models {
 		background-color: #DDDDDD;
 		}
@@ -33,7 +33,7 @@
 		</style>
 	</head>
 	<body>
-		
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -68,9 +68,9 @@
 						<h3 class="panel-title">Available Models</h3>
 					</div>
 					<div class="panel-body">
-						
+
 						<legend>Choose a model you want to try, or upload your own model</legend>
-						
+
 						<div class="form-group">
 							<a class="btn btn-warning" id='btnUploadModel' data-toggle="modal" href='#modal-uploadModel'>Upload your own model</a>
 							<div class="modal fade" id="modal-uploadModel">
@@ -81,12 +81,12 @@
 											<h4 class="modal-title">Upload your own model</h4>
 										</div>
 										<div class="modal-body">
-											
+
 											<noscript style="color: maroon">
 											<h2>JavaScript is disabled in your browser. "Drag and Drop" feature is not supported.</h2>
 											</noscript>
-											
-											
+
+
 											<legend>Drag and Drop to upload your model</legend>
 											<!-- A FileDrop area. Can contain any text or elements, or be empty.
 											Can be of any HTML tag too, not necessary fieldset. -->
@@ -104,38 +104,38 @@
 											<div>
 												<span>Please note that your uploaded model is not visible for others, and will be removed from the list once the page is refreshed. </span>
 											</div>
-											
-											
+
+
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-											
+
 										</div>
 										</div><!-- /.modal-content -->
 										</div><!-- /.modal-dialog -->
 										</div><!-- /.modal -->
-										
-										
+
+
 									</div>
 									<label for="inputModellist">Models:</label>
-									
+
 									<select name="modellist" id="inputModellist" class="form-control">
 										<option value="">-- Select One --</option>
 										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvU3VzcGVuc2lvbi5kd2Y=">Suspension</option>
 										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvU2VhdC5kd2Z4">Seat</option>
 										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvQ2hhc3Npcy5kd2Y=">Chassis</option>
 										<option value="dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwtYXMtYS1zZXJ2aWNlMjAxNTAxMjYvRHJpbGwuZHdmeA==">Drill</option>
-										
+
 									</select>
-									
+
 									<label for="inputSelectedUrn">Urn:</label>
 									<input type="text" name="selectedUrn" id="inputSelectedUrn" class="form-control" value="" required="required" pattern="" title="">
-									
-									
+
+
 									<img id="screenshot" class="img-thumbnail img-responsive" style="display: none;" src=""/>
 									<br/>
-									
-									
+
+
 									<a class="btn btn-danger" id='btnGetEmbededingcode' data-toggle="modal" href='#modal-embeddingCode'>Get example HTML code to load model in viewer</a>
 									<a class="btn btn-primary pull-right" id="btnFullscreen">View it now and play with some client APIs</a>
 
@@ -155,7 +155,7 @@
 														<li><b>Clear the cache of your browser or run in incognito window if you see 'no Access-Control-Allow-Origin header' issue.</b></li>
 													</ul>
 
-													
+
   <pre id="codecontent">
 														<!--Embedded code begin-->
 &lt;body style=&quot;margin:0&quot;&gt;
@@ -165,11 +165,11 @@
     &lt;!-- jquery --&gt;
     &lt;script src=&quot;https://code.jquery.com/jquery-2.1.2.min.js&quot;&gt;&lt;/script&gt;
  &lt;!-- Viewer --&gt;
-    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css&quot;/&gt;
-    &lt;script src=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.23&quot;/&gt;
+    &lt;script src=&quot;https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.23&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js&quot;&gt;&lt;/script&gt;
     &lt;script&gt;
-    //global variable 
+    //global variable
     var oViewer ;
 
     //replace with your own urn ...
@@ -205,24 +205,23 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 &lt;/body&gt;
 														<!--Embedded code end-->
 </pre>
-														
+
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-														
+
 													</div>
 													</div><!-- /.modal-content -->
 													</div><!-- /.modal-dialog -->
 													</div><!-- /.modal -->
 												</div>
-												
-												
-												
-												
-												
+
+
+
+
+
 											</div>
 										</div>
-									
 								</section>
 
 
@@ -235,7 +234,7 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 									<br/>
 									<br/>
 								</div>
-								
+
 								<!-- jQuery -->
 								<script src="//code.jquery.com/jquery.js"></script>
 								<!-- Bootstrap JavaScript -->
@@ -244,8 +243,8 @@ var urn = &#39;urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YWRuLTE3LjA3LjIwMTQtMTAuN
 								<script type="text/javascript" src="public/scripts/filedrop.js"></script>
 								<script type="text/javascript" src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.ViewData.js"></script>
 								<script type="text/javascript" src="public/scripts/main.js"></script>
-								
-								
-								
+
+
+
 							</body>
 						</html>
