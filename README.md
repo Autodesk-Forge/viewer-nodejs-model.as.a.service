@@ -1,12 +1,12 @@
 #Model as a Service Workflow Sample
 
-[![LMV](https://img.shields.io/badge/View%20%26%20Data%20API-v1.2.23-green.svg)](http://developer-autodesk.github.io/)
+[![LMV](https://img.shields.io/badge/Viewer-v1.2.23-green.svg)](http://developer-autodesk.github.io/)
 
 ##Description
 
 ![](./maas.png)
 
-A sample demonstrating the workflow and provide a tool to learn view and data API quickly.
+A sample demonstrating the workflow and provide a tool to learn <b>Viewer</b> quickly.
 
 Live demo: [http://still-spire-1606.herokuapp.com](http://still-spire-1606.herokuapp.com/)
 
@@ -36,4 +36,4 @@ That samples are licensed under the terms of the [MIT License](http://opensource
 
 ##Written by
 
-Written by [Daniel Du](http://adndevblog.typepad.com/cloud_and_mobile/daniel-du.html)  
+Written by [Daniel Du](http://adndevblog.typepad.com/cloud_and_mobile/daniel-du.html)   (Forge Partner Development)
