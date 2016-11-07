@@ -26,3 +26,7 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# webstorm files
+.DS_Store
+.idea

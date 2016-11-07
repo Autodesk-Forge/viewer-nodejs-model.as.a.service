@@ -20,12 +20,11 @@ var credentials  = function() {
 
     this.BaseUrl = 'https://developer.api.autodesk.com';
 
-    this.ClientId = 'replace with your own consumer key';
+    this.ClientId = process.env.FORGE_CLIENT_ID || 'replace with your own consumer key';
 
-    this.ClientSecret = 'replace with your secret key';
+    this.ClientSecret = process.env.FORGE_CLIENT_SECRET || 'replace with your secret key';
 
-    this.AuthenticateUrl = this.BaseUrl +
-        '/authentication/v1/authenticate';
+    this.AuthenticateUrl = this.BaseUrl + '/authentication/v1/authenticate';
 }
 
 module.exports = credentials;

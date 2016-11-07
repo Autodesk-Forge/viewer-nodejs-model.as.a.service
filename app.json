@@ -1,0 +1,22 @@
+{
+  "name": "viewer-nodejs-model.as.a.service",
+  "description": "A sample allows user to upload models and test client APIs live",
+  "repository": "https://github.com/Developer-Autodesk/viewer-nodejs-model.as.a.service",
+  "logo": "https://avatars0.githubusercontent.com/u/8017462?v=3&s=200",
+  "keywords": [
+    "express",
+    "framework",
+    "autodesk",
+    "forge"
+  ],
+  "env": {
+    "FORGE_CLIENT_ID": {
+      "description": "Forge Client ID"
+    },
+    "FORGE_CLIENT_SECRET": {
+      "description": "Forge Client Secret"
+    }
+  },
+  "website": "https://developer.autodesk.com/",
+  "success_url": "/"
+}
