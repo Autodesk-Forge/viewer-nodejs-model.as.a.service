@@ -44,8 +44,6 @@ Windows (use **Node.js command line** from Start menu)
 
 Open the browser: [http://localhost:3000](http://localhost:3000).
 
-**Important:** do not use **npm start** locally, this is intended for PRODUCTION only with HTTPS (SSL) secure cookies.
-
 ### Deploy on Heroku
 
 To deploy this application to Heroku, the **Callback URL** must use your .herokuapp.com address. After clicking on the button below, at the Heroku Create New App page, set your Client ID & Secret and the correct callback URL.
