@@ -1,10 +1,11 @@
-#Model as a Service Workflow Sample
+# Model as a Service Workflow Sample
 
 [![LMV](https://img.shields.io/badge/Viewer-v1.2.23-green.svg)](http://developer-autodesk.github.io/)
 
 ##Description
 
-![](./maas.png)
+### Thumbnail
+![thumbnail](./maas.png)
 
 A sample demonstrating the workflow and provide a tool to learn <b>Viewer</b> quickly.
 
