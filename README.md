@@ -5,7 +5,7 @@
 ## Description
 
 ### Thumbnail
-![thumbnail](./maas.png)
+![thumbnail](/thumbnail.png)
 
 A sample demonstrating the workflow and provide a tool to learn <b>Viewer</b> quickly.
 
